@@ -1,0 +1,713 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+
+    font-family: Arial, sans-serif;
+
+    background: #111;
+    color: white;
+}
+
+
+body {
+    min-height: 100vh;
+}
+
+
+.app {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-rows: auto 1fr;
+}
+
+/* =========================
+   TOPBAR
+   ========================= */
+
+.topbar {
+    min-height: 70px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    align-items: center;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #292929;
+
+    background: #181818;
+}
+
+
+/* LEFT */
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+}
+
+
+.app-title {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 600;
+}
+
+
+/* RIGHT */
+
+.topbar-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* USERNAME */
+
+.username {
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+/* NEW NOTE */
+
+.new-note-button {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 14px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #3d4fd3;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.new-note-button:hover {
+    background: #4a5ce0;
+}
+
+
+.new-note-icon {
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+
+/* =========================
+   NOTES AREA
+   ========================= */
+
+.notes-area {
+    padding: 30px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .app-title {
+        font-size: 18px;
+    }
+
+    .username {
+        display: none;
+    }
+
+    .new-note-button span:last-child {
+        display: none;
+    }
+
+}
+
+/* =========================
+   NOTES GRID
+   ========================= */
+
+.notes-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(350px, 1fr));
+
+    gap: 18px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+}
+
+/* =========================
+   NOTE CARD
+   ========================= */
+
+.note-card {
+    min-height: 258px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #191919;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.note-card:hover {
+    border-color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   TITLE
+   ========================= */
+
+.note-title {
+    margin: 0 0 12px;
+
+    color: #a8a8a8;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   PREVIEW
+   ========================= */
+
+.note-preview {
+    margin: 0;
+
+    color: #707070;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.note-footer {
+    margin-top: auto;
+    padding-top: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-top: 1px solid #303030;
+}
+
+
+/* =========================
+   ACTIONS
+   ========================= */
+
+.note-actions {
+    display: flex;
+    gap: 18px;
+}
+
+.note-action {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 5px;
+
+    background: transparent;
+    color: #666;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.note-action:hover {
+    background: #252525;
+    color: #aaa;
+}
+
+
+.note-action .material-symbols-rounded {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.note-dates {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #666;
+
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+
+    .note-footer {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .note-dates {
+        white-space: normal;
+        text-align: right;
+    }
+}
+
+
+/* =========================
+   DATES
+   ========================= */
+
+.note-dates {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #666;
+
+    font-size: 11px;
+}
+
+.date-separator {
+    color: #555;
+}
+
+
+
+
+/* =========================
+   CREATE NOTE MODAL
+   ========================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+/* =========================
+   MODAL
+   ========================= */
+
+.note-modal {
+    width: min(650px, 100%);
+    height: min(600px, 90vh);
+
+    display: flex;
+    flex-direction: column;
+
+    background: #191919;
+
+    border: 1px solid #292929;
+    border-radius: 9px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.modal-header {
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+.modal-header h2 {
+    margin: 0;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.close-modal-button {
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #666;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.close-modal-button:hover {
+    background: #252525;
+    color: #aaa;
+}
+
+.close-modal-button .material-symbols-rounded {
+    font-size: 21px;
+}
+
+
+/* =========================
+   BODY
+   ========================= */
+
+.modal-body {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 25px 30px;
+
+    overflow-y: auto;
+}
+
+
+.content-field {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-field label {
+    color: #ddd;
+
+    font-size: 14px;
+
+    flex-shrink: 0;
+}
+
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+
+.form-field input {
+    padding: 15px 0;
+}
+
+
+.form-field textarea {
+    min-height: 260px;
+
+    padding: 12px 0;
+
+    resize: none;
+
+    line-height: 1.5;
+}
+
+
+.form-field textarea::placeholder,
+.form-field input::placeholder {
+    color: #555;
+}
+
+
+/* CONTENT FIELD */
+
+.content-field {
+    display: block;
+    border-bottom: none;
+}
+
+
+.content-field label {
+    display: block;
+
+    padding-top: 15px;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.modal-footer {
+    min-height: 62px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+    border-top: 1px solid #292929;
+}
+
+
+.create-note-submit {
+    padding: 10px 18px;
+
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    background: #2a2a2a;
+    color: #ccc;
+
+    font-size: 13px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.create-note-submit:hover {
+    background: #333;
+    border-color: #444;
+}
+
+
+.note-modal-edit {
+    padding: 10px 18px;
+
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    background: #222;
+    color: #999;
+
+    font-size: 13px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.note-modal-edit:hover {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #ccc;
+}
+
+.note-modal-edit:active {
+    background: #1d1d1d;
+}
+
+#new-note-title:disabled,
+#new-note-content:disabled {
+    background: #191919;
+    color: #a8a8a8;
+    border-color: #292929;
+    opacity: 1;
+    cursor: default;
+}
+
+#new-note-title:not(:disabled),
+#new-note-content:not(:disabled) {
+    background: #1d1d1d;
+    color: #d0d0d0;
+    border-color: #3a3a3a;
+}
+
+#new-note-content {
+    resize: vertical;
+}
+
+#new-note-content {
+    flex: 1;
+
+    min-height: 250px;
+
+    resize: none;
+}
+
+.account-modal {
+    width: min(450px, 100%);
+
+    display: flex;
+    flex-direction: column;
+
+    background: #191919;
+
+    border: 1px solid #292929;
+    border-radius: 9px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
+}
+
+.account-button {
+    padding: 9px 15px;
+
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #888;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.account-button:hover {
+    background: #242424;
+    border-color: #444;
+    color: #ccc;
+}
+
+
+.danger-button:hover {
+    color: #d88;
+    border-color: #633;
+    background: #241a1a;
+}
+
+.danger-message {
+    margin: 0;
+    color: #999;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.delete-account-submit {
+    padding: 10px 18px;
+    border: 1px solid #633;
+    border-radius: 6px;
+    background: #2a1b1b;
+    color: #c88;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.delete-account-submit:hover {
+    background: #382020;
+    border-color: #844;
+    color: #e0a0a0;
+}
