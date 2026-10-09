@@ -1,0 +1,20 @@
+{
+  "name": "encrypted-notebook-desktop",
+  "version": "1.1.0",
+  "description": "A desktop encrypted notebook application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "encrypted-notebook",
+    "privacy",
+    "encryption",
+    "electron"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^44.7.0"
+  }
+}

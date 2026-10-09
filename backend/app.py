@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from database import engine, SessionLocal, Base
+from werkzeug.serving import make_server
 
 from users import (
     create_guest,
@@ -621,8 +622,19 @@ def delete_account_route():
 # --------------------------------------------------
 
 if __name__ == "__main__":
-    app.run(
-        host="127.0.0.1",
-        port=5000,
-        debug=True
+    server = make_server(
+        "127.0.0.1",
+        0,
+        app
     )
+
+    # Tell Electron which port the operating system assigned.
+    print(
+        f"BACKEND_READY:{server.server_port}",
+        flush=True
+    )
+
+    try:
+        server.serve_forever()
+    finally:
+        server.server_close()

@@ -1,4 +1,10 @@
-const API_URL = "http://127.0.0.1:5000";
+const API_URL = new URLSearchParams(
+    window.location.search
+).get("apiUrl");
+
+if (!API_URL) {
+    throw new Error("The backend API address was not provided.");
+}
 
 let sessionId = null;
 let username = null;
